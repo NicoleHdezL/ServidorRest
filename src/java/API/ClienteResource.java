@@ -11,43 +11,45 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
-import javax.ws.rs.PUT;
+import javax.ws.rs.POST;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 /**
  * REST Web Service
  *
- * @author Nicol
+ * @author Santiago
  */
-@Path("generic")
-public class GenericResource {
+@Path("Cliente")
+public class ClienteResource {
 
     @Context
     private UriInfo context;
 
     /**
-     * Creates a new instance of GenericResource
+     * Creates a new instance of ClienteResource
      */
-    public GenericResource() {
+    public ClienteResource() {
     }
 
     /**
-     * Retrieves representation of an instance of API.GenericResource
+     * Retrieves representation of an instance of API.ClienteResource
      * @return an instance of java.lang.String
      */
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public String getJson() {
+    public String getJson(@QueryParam("user") String user) {
         //TODO return proper representation object
         throw new UnsupportedOperationException();
     }
 
     /**
-     * PUT method for updating or creating an instance of GenericResource
+     * PUT method for updating or creating an instance of ClienteResource
      * @param content representation for the resource
      */
-    @PUT
+    @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public void putJson(String content) {
+    public void postJson(String content) {
+        
     }
 }
