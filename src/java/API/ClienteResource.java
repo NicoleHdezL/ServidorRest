@@ -5,6 +5,7 @@
  */
 package API;
 
+import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Produces;
@@ -22,6 +23,7 @@ import javax.ws.rs.core.MediaType;
  */
 @Path("Cliente")
 public class ClienteResource {
+    
 
     @Context
     private UriInfo context;
@@ -38,9 +40,8 @@ public class ClienteResource {
      */
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public String getJson(@QueryParam("user") String user) {
-        //TODO return proper representation object
-        throw new UnsupportedOperationException();
+    public String getJson(@QueryParam("user") String user, @QueryParam("password") String password) {
+        return "Aceptado";
     }
 
     /**
