@@ -41,7 +41,15 @@ public class ClienteResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public String getJson(@QueryParam("user") String user, @QueryParam("password") String password) {
-        return "Aceptado";
+        System.out.println(user);
+        if (user.equals("Prueba")){
+            if(password.equals("1234")){
+                return "Aceptado";
+            }
+            return "Contraseña incorrecta.";
+        } else{
+            return "El usuario no es correcto.";
+        }
     }
 
     /**
