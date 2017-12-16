@@ -5,6 +5,7 @@
  */
 package API;
 
+import GUI.Administrador;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
@@ -15,6 +16,10 @@ import javax.ws.rs.Path;
 import javax.ws.rs.POST;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
+import proyectofinalclienteservidor.Utils;
+import GUI.LogIn;
+import proyectofinalclienteservidor.NivelDePermisos;
+
 
 /**
  * REST Web Service
@@ -42,14 +47,27 @@ public class ClienteResource {
     @Produces(MediaType.APPLICATION_JSON)
     public String getJson(@QueryParam("user") String user, @QueryParam("password") String password) {
         System.out.println(user);
-        if (user.equals("Prueba")){
-            if(password.equals("1234")){
-                return "Aceptado";
+        String respuesta = "";
+
+        for (int i = 0; i < Utils.users.size(); i++) {
+            if (Utils.users.get(i).getName().equals(user)) {
+                if (Utils.users.get(i).getPassword().equals(password)) {
+                    if (Utils.users.get(i).getNivel() == NivelDePermisos.Administrador) {
+                        respuesta = "Admin";      
+                    }else if(Utils.users.get(i).getNivel() == NivelDePermisos.Cliente){
+                        respuesta = "Cliente";
+                    }else if(Utils.users.get(i).getNivel() == NivelDePermisos.Empleado){
+                        respuesta = "Empleado";
+                    }
+                }else{
+                    respuesta = "incorrecto";
+                }
+            }else{
+                respuesta = "no existe";
             }
-            return "Contraseña incorrecta.";
-        } else{
-            return "El usuario no es correcto.";
+            
         }
+        return respuesta;
     }
 
     /**
