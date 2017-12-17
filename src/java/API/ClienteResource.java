@@ -5,8 +5,7 @@
  */
 package API;
 
-import GUI.Administrador;
-import javax.ws.rs.core.Response;
+import Code.Utils;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Produces;
@@ -16,8 +15,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.POST;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
-import proyectofinalclienteservidor.Utils;
-import GUI.LogIn;
 import proyectofinalclienteservidor.NivelDePermisos;
 
 
@@ -45,29 +42,23 @@ public class ClienteResource {
      */
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public String getJson(@QueryParam("user") String user, @QueryParam("password") String password) {
-        System.out.println(user);
-        String respuesta = "";
-
+    public String getJson(@QueryParam("id") String id, @QueryParam("password") String password) {
         for (int i = 0; i < Utils.users.size(); i++) {
-            if (Utils.users.get(i).getName().equals(user)) {
+            if (Utils.users.get(i).getId().equals(id)) {
                 if (Utils.users.get(i).getPassword().equals(password)) {
                     if (Utils.users.get(i).getNivel() == NivelDePermisos.Administrador) {
-                        respuesta = "Admin";      
+                        return "Administrador";      
                     }else if(Utils.users.get(i).getNivel() == NivelDePermisos.Cliente){
-                        respuesta = "Cliente";
+                        return "Cliente";
                     }else if(Utils.users.get(i).getNivel() == NivelDePermisos.Empleado){
-                        respuesta = "Empleado";
+                        return "Empleado";
                     }
                 }else{
-                    respuesta = "incorrecto";
+                    return "Contraseña incorrecta.";
                 }
-            }else{
-                respuesta = "no existe";
             }
-            
         }
-        return respuesta;
+        return "El usuario que usted ingresó, no existe.";
     }
 
     /**
