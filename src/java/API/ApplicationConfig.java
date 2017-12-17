@@ -30,7 +30,9 @@ public class ApplicationConfig extends Application {
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
         resources.add(API.ClienteResource.class);
+        resources.add(API.EmpleadoResource.class);
         resources.add(API.InicioResource.class);
+        resources.add(API.LoginResource.class);
         resources.add(API.NormalUserResource.class);
         resources.add(API.RutinaResource.class);
     }

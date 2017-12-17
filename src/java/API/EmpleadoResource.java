@@ -9,40 +9,36 @@ import Code.Utils;
 import com.google.gson.Gson;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
-import javax.ws.rs.Produces;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.Produces;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.POST;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
-import proyectofinalclienteservidor.Cliente;
-import proyectofinalclienteservidor.ClientePOJO;
+import proyectofinalclienteservidor.Empleado;
+import proyectofinalclienteservidor.EmpleadoPOJO;
 import proyectofinalclienteservidor.NivelDePermisos;
-import static proyectofinalclienteservidor.NivelDePermisos.Cliente;
-import proyectofinalclienteservidor.Tarifas;
-
 
 /**
  * REST Web Service
  *
  * @author Santiago
  */
-@Path("Cliente")
-public class ClienteResource {
-    
+@Path("Empleado")
+public class EmpleadoResource {
 
     @Context
     private UriInfo context;
 
     /**
-     * Creates a new instance of ClienteResource
+     * Creates a new instance of EmpleadoResource
      */
-    public ClienteResource() {
+    public EmpleadoResource() {
     }
 
     /**
-     * Retrieves representation of an instance of API.ClienteResource
+     * Retrieves representation of an instance of API.EmpleadoResource
      * @return an instance of java.lang.String
      */
     @GET
@@ -57,16 +53,16 @@ public class ClienteResource {
     }
 
     /**
-     * PUT method for updating or creating an instance of ClienteResource
+     * PUT method for updating or creating an instance of EmpleadoResource
      * @param content representation for the resource
      */
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public void postJson(String content) {
-        ClientePOJO pojo = new Gson().fromJson(content, ClientePOJO.class);
+    public void putJson(String content) {
+        EmpleadoPOJO pojo = new Gson().fromJson(content, EmpleadoPOJO.class);
         
-        Cliente cliente = new Cliente(pojo.getName(), pojo.getAge(), "universal", NivelDePermisos.Cliente,
-                                      pojo.getId(), pojo.getMesesEnGym(), "", Tarifas.Parejas);
+        Empleado cliente = new Empleado(pojo.getName(), "universal", pojo.getEdad(), NivelDePermisos.Empleado,
+                                        pojo.getId(), pojo.getSalario());
         
         Utils.users.add(cliente);
     }
