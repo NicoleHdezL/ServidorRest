@@ -49,12 +49,17 @@ public class ClienteResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public String getJson(@QueryParam("id") String id) {
+        ClientePOJO cliente = null;
         for (int i = 0; i < Utils.users.size(); i++) {
             if (Utils.users.get(i).getId().equals(id)) {
-               //ClientePOJO cliente = new ClientePOJO(name, age, id, meses, precio, date);
+                String name = Utils.users.get(i).getName();
+                String identificacion = Utils.users.get(i).getId();
+                int age = Utils.users.get(i).getAge();
+                cliente = new ClientePOJO(name, age, identificacion, 0, 0, null);
+                break;
             }
         }
-        return "Agregar";
+        return new Gson().toJson(cliente);
     }
 
     /**

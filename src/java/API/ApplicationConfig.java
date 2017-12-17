@@ -34,6 +34,7 @@ public class ApplicationConfig extends Application {
         resources.add(API.InfoResource.class);
         resources.add(API.InicioResource.class);
         resources.add(API.LoginResource.class);
+        resources.add(API.ModClienteResource.class);
         resources.add(API.NormalUserResource.class);
         resources.add(API.RutinaResource.class);
     }
