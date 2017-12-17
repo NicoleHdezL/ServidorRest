@@ -6,6 +6,7 @@
 package API;
 
 import Code.Utils;
+import com.google.gson.Gson;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Produces;
@@ -15,7 +16,11 @@ import javax.ws.rs.Path;
 import javax.ws.rs.POST;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
+import proyectofinalclienteservidor.Cliente;
+import proyectofinalclienteservidor.ClientePOJO;
 import proyectofinalclienteservidor.NivelDePermisos;
+import static proyectofinalclienteservidor.NivelDePermisos.Cliente;
+import proyectofinalclienteservidor.Tarifas;
 
 
 /**
@@ -68,6 +73,11 @@ public class ClienteResource {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public void postJson(String content) {
+        ClientePOJO pojo = new Gson().fromJson(content, ClientePOJO.class);
         
+        Cliente cliente = new Cliente(pojo.getName(), pojo.getAge(), "universal", NivelDePermisos.Cliente,
+                                      pojo.getId(), pojo.getMesesEnGym(), "", Tarifas.Parejas);
+        
+        Utils.users.add(cliente);
     }
 }

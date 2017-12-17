@@ -47,7 +47,8 @@ public class NormalUserResource {
             if (Utils.users.get(i).getId().equals(id)) {
                 ClientePOJO pojo = new ClientePOJO(Utils.users.get(i).getName(),
                                                    Utils.users.get(i).getAge(),
-                                                   Utils.users.get(i).getId());
+                                                   Utils.users.get(i).getId(),
+                                                   5, 12.5, null);
                 return new Gson().toJson(pojo);
             }
         }
