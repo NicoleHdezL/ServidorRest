@@ -5,9 +5,11 @@
  */
 package API;
 
+import Code.ListaDePersonas;
 import Code.Utils;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Executors;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Produces;
@@ -61,6 +63,9 @@ public class InicioResource {
             
             Utils.ejercicios.add(ejer1);
             Utils.ejercicios.add(ejer2);
+            
+            Utils.servicio = Executors.newCachedThreadPool();
+            Utils.personas = new ListaDePersonas();
             
             Utils.yaInicio = true;
         }

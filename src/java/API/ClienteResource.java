@@ -5,6 +5,7 @@
  */
 package API;
 
+import Code.CreaPersona;
 import Code.Utils;
 import com.google.gson.Gson;
 import javax.ws.rs.core.Context;
@@ -64,10 +65,7 @@ public class ClienteResource {
     @Consumes(MediaType.APPLICATION_JSON)
     public void postJson(String content) {
         ClientePOJO pojo = new Gson().fromJson(content, ClientePOJO.class);
-        
-        Cliente cliente = new Cliente(pojo.getName(), pojo.getAge(), "universal", NivelDePermisos.Cliente,
-                                      pojo.getId(), pojo.getMesesEnGym(), "", Tarifas.Parejas);
-        
-        Utils.users.add(cliente);
+        CreaPersona hilo = new CreaPersona(pojo, Utils.personas);
+        Utils.servicio.submit(hilo);
     }
 }

@@ -6,7 +6,8 @@
 package Code;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import proyectofinalclienteservidor.Ejercicios;
 import proyectofinalclienteservidor.Persona;
 
@@ -19,4 +20,6 @@ public class Utils {
     public static ArrayList <Persona> users = new ArrayList<>();
     public static boolean yaInicio = false;
     public static ArrayList<Ejercicios> ejercicios = new ArrayList<>();
+    public static ListaDePersonas personas;
+    public static ExecutorService servicio;
 }
