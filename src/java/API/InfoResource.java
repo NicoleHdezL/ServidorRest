@@ -14,6 +14,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.POST;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 /**
@@ -39,8 +40,18 @@ public class InfoResource {
      */
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public String getJson() {
-        return new Gson().toJson(Utils.users.size());
+    public String getJson(@QueryParam("dato") String dato, @QueryParam("id") String id) {
+        if(dato.equals("CantDeClientes")){
+            return new Gson().toJson(Utils.users.size());
+        } else if(dato.equals("ExisteUsuario")){
+            for (int i = 0; i < Utils.users.size(); i++) {
+                if (Utils.users.get(i).getId().equals(id)) {
+                   return "El usuario ya existe.";
+                }
+            }
+            return "Agregar";
+        }
+        return "Error infoResources, informe al administrador.";
     }
 
     /**

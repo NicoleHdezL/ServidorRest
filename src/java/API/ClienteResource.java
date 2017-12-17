@@ -51,7 +51,7 @@ public class ClienteResource {
     public String getJson(@QueryParam("id") String id) {
         for (int i = 0; i < Utils.users.size(); i++) {
             if (Utils.users.get(i).getId().equals(id)) {
-               return "El usuario ya existe.";
+               //ClientePOJO cliente = new ClientePOJO(name, age, id, meses, precio, date);
             }
         }
         return "Agregar";

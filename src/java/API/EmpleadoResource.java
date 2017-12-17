@@ -44,13 +44,8 @@ public class EmpleadoResource {
      */
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public String getJson(@QueryParam("id") String id) {
-        for (int i = 0; i < Utils.users.size(); i++) {
-            if (Utils.users.get(i).getId().equals(id)) {
-               return "El usuario ya existe.";
-            }
-        }
-        return "Agregar";
+    public String getJson() {
+        return null;
     }
 
     /**
