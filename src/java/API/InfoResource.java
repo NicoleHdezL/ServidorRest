@@ -7,6 +7,8 @@ package API;
 
 import Code.Utils;
 import com.google.gson.Gson;
+import java.util.ArrayList;
+import java.util.List;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Consumes;
@@ -16,6 +18,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.POST;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
+import proyectofinalclienteservidor.NivelDePermisos;
 
 /**
  * REST Web Service
@@ -50,6 +53,19 @@ public class InfoResource {
                 }
             }
             return "Agregar";
+        } else if(dato.equals("listaUsuarios")){
+            List<String> lista = new ArrayList<>();
+            if(Utils.users.size() > 3){
+                for(int i = 3; i < Utils.users.size(); i++){
+                    if(Utils.users.get(i).getNivel() == NivelDePermisos.Cliente){
+                        String userID = Utils.users.get(i).getId();
+                        lista.add(userID);
+                    }
+                }
+                return new Gson().toJson(lista);
+            }else{
+                return "NoHay";
+            }
         }
         return "Error infoResources, informe al administrador.";
     }
