@@ -17,11 +17,10 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
-import javax.ws.rs.PUT;
+import javax.ws.rs.POST;
 import javax.ws.rs.core.MediaType;
 import proyectofinalclienteservidor.Administrador;
 import proyectofinalclienteservidor.Cliente;
-import proyectofinalclienteservidor.Ejercicios;
 import proyectofinalclienteservidor.Empleado;
 import proyectofinalclienteservidor.NivelDePermisos;
 import proyectofinalclienteservidor.Tarifas;
@@ -59,11 +58,6 @@ public class InicioResource {
             Utils.users.add(empleado);
             Utils.users.add(cliente);
             
-            Ejercicios ejer1 = new Ejercicios("3", 34.5, 6, "Ejercicio 1", "Primera", "2x3");
-            Ejercicios ejer2 = new Ejercicios("3", 34.5, 6, "Ejercicio 2", "Sgunda", "2x3");
-            
-            Utils.ejercicios.add(ejer1);
-            Utils.ejercicios.add(ejer2);
             
             Utils.servicio = Executors.newCachedThreadPool();
             Utils.personas = new ListaDePersonas();
@@ -78,8 +72,29 @@ public class InicioResource {
      * PUT method for updating or creating an instance of InicioResource
      * @param content representation for the resource
      */
-    @PUT
+    @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public void putJson(String content) {
+        String recibe = content;
+        Empleado empleado1 = new Empleado("Aldo Mora", "admin", 28, NivelDePermisos.Empleado, "12345", 100000.0);
+        Empleado empleado2 = new Empleado("Nicole Hernandez", "admin", 22, NivelDePermisos.Empleado, "23456", 100000.0);
+        Empleado empleado3 = new Empleado("Santiago Méndez", "admin", 21, NivelDePermisos.Empleado, "34567", 100000.0);
+        
+        Cliente cliente1 = new Cliente("Juan", 23, "cliente", NivelDePermisos.Cliente, "102340543", 24, "", Tarifas.Parejas);
+        Cliente cliente2 = new Cliente("Marcelo", 18, "cliente", NivelDePermisos.Cliente, "214235432", 24, "", Tarifas.Parejas);
+        Cliente cliente3 = new Cliente("Stephanie", 28, "cliente", NivelDePermisos.Cliente, "114324323", 24, "", Tarifas.Parejas);
+        Cliente cliente4 = new Cliente("William", 32, "cliente", NivelDePermisos.Cliente, "116540453", 24, "", Tarifas.Parejas);
+        Cliente cliente5 = new Cliente("Catalina", 26, "cliente", NivelDePermisos.Cliente, "212430654", 24, "", Tarifas.Parejas); 
+        
+        Utils.users.add(empleado1);
+        Utils.users.add(empleado2);
+        Utils.users.add(empleado3);
+        
+        Utils.users.add(cliente1);
+        Utils.users.add(cliente2);
+        Utils.users.add(cliente3);
+        Utils.users.add(cliente4);
+        Utils.users.add(cliente5);
+        
     }
 }
