@@ -21,5 +21,6 @@ public class Utils {
     public static boolean yaInicio = false;
     public static ArrayList<Ejercicios> ejercicios = new ArrayList<>();
     public static ListaDePersonas personas;
+    public static ListaDeEjercicios listaDeEjercicios;
     public static ExecutorService servicio;
 }

@@ -5,6 +5,7 @@
  */
 package API;
 
+import Code.ListaDeEjercicios;
 import Code.ListaDePersonas;
 import Code.Utils;
 import java.util.ArrayList;
@@ -66,6 +67,7 @@ public class InicioResource {
             
             Utils.servicio = Executors.newCachedThreadPool();
             Utils.personas = new ListaDePersonas();
+            Utils.listaDeEjercicios = new ListaDeEjercicios();
             
             Utils.yaInicio = true;
         }

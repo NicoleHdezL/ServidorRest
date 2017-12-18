@@ -5,6 +5,7 @@
  */
 package API;
 
+import Code.AgregaEjercicio;
 import Code.Utils;
 import com.google.gson.Gson;
 import java.util.ArrayList;
@@ -66,5 +67,8 @@ public class RutinaResource {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public void postJson(String content) {
+        Ejercicios pojo = new Gson().fromJson(content, Ejercicios.class);
+        AgregaEjercicio hilo = new AgregaEjercicio(pojo, Utils.listaDeEjercicios);
+        Utils.servicio.submit(hilo);
     }
 }
